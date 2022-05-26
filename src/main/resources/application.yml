@@ -1,0 +1,5 @@
+#Spring boot 2.6 version later
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

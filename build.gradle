@@ -30,6 +30,8 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//swagger
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	//restdocs
 	//testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
