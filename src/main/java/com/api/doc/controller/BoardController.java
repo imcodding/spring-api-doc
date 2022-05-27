@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class SwaggerController {
+public class BoardController {
 
     private final BoardRepository boardRepository;
 

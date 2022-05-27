@@ -33,7 +33,7 @@ dependencies {
 	//swagger
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	//restdocs
-	//testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
 tasks.named('test') {
