@@ -8,3 +8,7 @@
 - jUnit5
 - MockMvc
 - AsciiDoc
+
+## 이슈
+- gradle 7.x 버전에서는 index.docs 를 index.html 로 생성하지 않음.
+- 버전을 낮추거나 추가적인 설정 필요.
