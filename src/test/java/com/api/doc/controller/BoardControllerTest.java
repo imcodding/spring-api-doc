@@ -1,5 +1,7 @@
 package com.api.doc.controller;
 
+import com.api.doc.dto.Board;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,8 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 
-import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 import org.springframework.restdocs.payload.PayloadDocumentation;
@@ -18,6 +19,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.util.HashMap;
+
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
@@ -64,6 +68,31 @@ class BoardControllerTest {
                                         PayloadDocumentation.fieldWithPath("userId").description("작성자입니다.")
                                 )
 
+                        )
+                )
+        ;
+    }
+
+    @Test
+    void addBoard() throws Exception {
+        HashMap<String, Object> board = new HashMap<>();
+        board.put("title", "테스트 제목입니다.");
+        board.put("content", "테스트 내용입니다.");
+        board.put("userId", "사용자1");
+
+        JSONObject jsonObject = new JSONObject(board);
+        String jsonString = jsonObject.toString();
+
+        this.mockMvc.perform(post("/api/v1/board").content(jsonString).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(
+
+                        document("{method-name}",
+                            requestFields(
+                                    fieldWithPath("title").description("게시글 제목입니다."),
+                                    fieldWithPath("content").description("게시글 내용입니다."),
+                                    fieldWithPath("userId").description("작성자입니다")
+                            )
                         )
                 )
         ;
